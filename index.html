@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YTBlive</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="tab-bar">
+  <h1>YTBlive <span>●</span></h1>
+  <button class="tab-btn active" id="tab-monitor" type="button">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+    </svg>频道监测
+  </button>
+  <button class="tab-btn" id="tab-player" type="button">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <rect x="2" y="3" width="20" height="14" rx="2"/>
+      <path d="m10 8 5 3-5 3V8z" fill="currentColor" stroke="none"/>
+      <path d="M8 21h8M12 17v4"/>
+    </svg>多窗播放
+  </button>
+</div>
+
+<!-- MONITOR -->
+<div class="view active" id="view-monitor">
+  <div class="monitor-toolbar">
+    <span id="mon-progress"></span>
+    <div class="search-wrap" id="search-wrap">
+      <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+      </svg>
+      <input class="search-input" id="search-input" type="text"
+             placeholder="频道名(title)" autocomplete="off" spellcheck="false">
+      <button class="search-clear" id="search-clear" type="button" title="清除搜索">✕</button>
+    </div>
+    <button class="mon-action-btn" id="mon-btn" type="button">刷新数据</button>
+  </div>
+  <div class="search-dropdown" id="search-dropdown" style="display:none"></div>
+  <div class="monitor-body"><div id="mon-grid"></div></div>
+</div>
+
+<!-- PLAYER -->
+<div class="view" id="view-player">
+  <div class="player-toolbar">
+    <div class="layout-btns">
+      <button class="layout-btn active" id="btn-col1" type="button" title="单列">
+        <div style="display:grid;grid-template-columns:1fr;gap:2px">
+          <div class="dot" style="width:14px"></div>
+          <div class="dot" style="width:14px"></div>
+          <div class="dot" style="width:14px"></div>
+        </div>
+      </button>
+      <button class="layout-btn" id="btn-col2" type="button" title="双列">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px">
+          <div class="dot"></div><div class="dot"></div>
+          <div class="dot"></div><div class="dot"></div>
+        </div>
+      </button>
+      <button class="layout-btn" id="btn-col3" type="button" title="三列">
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px">
+          <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+          <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+        </div>
+      </button>
+    </div>
+    <button class="tb-secondary" id="btnRefreshAll" type="button">刷新全部</button>
+    <button class="add-btn" id="addBtn" type="button">＋ 添加窗口</button>
+    <span class="count-badge" id="countBadge"></span>
+  </div>
+  <div id="desk">
+    <div id="empty-hint">
+      <strong>暂无播放窗口</strong>
+      点击「添加窗口」，或在「频道监测」中发送直播到播放器
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+<div id="scale-tip"></div>
+
+<script src="state-store.js"></script>
+<script src="dom-utils.js"></script>
+<script src="api-client.js"></script>
+<script src="player-manager.js"></script>
+<script src="ui-controller.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
